@@ -1,0 +1,55 @@
+﻿@model IEnumerable<EmployeeModel>
+
+<div class="card-deck">
+    @foreach (var item in Model)
+    {
+        <div class="card m-3">
+            <div>
+                <h3>@item.Name</h3>
+            </div>
+            <img class="card-img-top" src="~/images/emp1.png" style="height:150px;width:200px" />
+            <div class="card-footer text-center">
+                <a asp-controller="Employee" class="btn btn-primary btnlst" asp-action="Details" asp-route-id="@item.Id">View</a>
+                <a asp-controller="Employee" class="btn btn-primary btnlst" asp-action="Index" asp-route-id="@item.Id">Edit</a>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Launch demo modal
+                </button>
+                <a href="#" class="btn btn-danger btnlst" onclick="setIdToDelete(@item.Id)" data-toggle="modal" data-target="#exampleModal">Delete</a>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure, want to delete employee id <span id="empid"></span>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="DeleteEmployee()" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+
+    });
+    function setIdToDelete(id) {
+        $("#empid").text(id);
+    }
+    function DeleteEmployee() {
+        console.log("Delete called")
+    }
+</script>

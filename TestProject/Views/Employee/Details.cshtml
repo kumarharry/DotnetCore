@@ -1,0 +1,31 @@
+﻿@model EmployeeModel
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Name</h1>
+            </div>
+            <div class="card-body text-center">
+                <img class="card-img-top" src="~/images/emp1.png" style="height:150px;width:200px" />
+                <h4>
+                    <label>Employee ID :</label>
+                    <label>@Model.Id</label>
+                </h4>
+                <h4>
+                    <label>Email :</label>
+                    <label>@Model.Email</label>
+                </h4>
+                <h4>
+                    <label>Department Name :</label>
+                    <label>@Model.DepartmentName</label>
+                </h4>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="Employee" class="btn btn-primary btnlst" asp-action="Index">Back</a>
+                <a asp-controller="Employee" class="btn btn-primary btnlst" asp-action="Index">Edit</a>
+                <a asp-controller="Employee" class="btn btn-danger btnlst" asp-action="Index">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>

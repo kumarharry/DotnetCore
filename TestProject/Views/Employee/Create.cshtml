@@ -1,0 +1,35 @@
+﻿@model EmployeeModel
+<form asp-controller="Employee" asp-action="Create" method="post">
+    <div class="form-group row m-2">
+        <label asp-for="Name" class="col-sm-2"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Name" placeholder="Enter Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row m-2 ">
+        <label asp-for="Email" class="col-sm-2"></label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Email" placeholder="Enter Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row m-2">
+        <label asp-for="DepartmentName" class="col-sm-2 "></label>
+        <div class="col-sm-10">
+            <select class="form-control" asp-for="DepartmentName" asp-items="Html.GetEnumSelectList<DepartmentEnum>() ">
+                <option value="">Select</option>
+            </select>
+            <span asp-validation-for="DepartmentName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group text-danger" asp-validation-summary="All">
+
+    </div>
+    <div class="m-3">
+        <button type="submit" class="btn btn-primary btnlst">Save</button>
+        <a class="btn btn-primary btnlst" asp-controller="Employee" asp-action="Index">Cancel</a>
+    </div>
+</form>
