@@ -3,3 +3,12 @@
 ################################################################################
 
 /.vs/TestProject/FileContentIndex
+/.vs/ProjectEvaluation/testproject.projects.v5.2
+/.vs/ProjectEvaluation/testproject.metadata.v5.2
+/.vs/TestProject/config/applicationhost.config
+/.vs/TestProject/DesignTimeBuild/.dtbcache.v2
+/.vs/TestProject/FileContentIndex/c5c525c8-c7bc-4583-b76b-1cbd50ca6dac.vsidx
+*.v2
+*.exe
+/.vs/TestProject/v17
+/TestProject/bin/Debug/net6.0/TestProject.exe
