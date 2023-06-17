@@ -22,7 +22,7 @@ namespace TestProject.Models
             return _employees;
         }
 
-        public EmployeeModel Add(EmployeeModel employee)
+        public EmployeeModel Create(EmployeeModel employee)
         {
             employee.Id = _employees.Max(x => x.Id) + 1;
             _employees.Add(employee);
@@ -40,6 +40,19 @@ namespace TestProject.Models
                 result = true;
             }
             return result;
+        }
+
+        public EmployeeModel Update(EmployeeModel employeeModel)
+        {
+            EmployeeModel employee = _employees.FirstOrDefault(x=>x.Id == employeeModel.Id) ?? new EmployeeModel();
+            if (employee != null)
+            {
+                employee.Id = employeeModel.Id;
+                employee.Name = employeeModel.Name;
+                employee.DepartmentName= employeeModel.DepartmentName;
+                employee.Email = employeeModel.Email;
+            }
+            return employee;
         }
     }
 }

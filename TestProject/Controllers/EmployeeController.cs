@@ -1,15 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TestProject.Models;
 
+
 namespace TestProject.Controllers
 {
     public class EmployeeController : Controller
     {
         private readonly IEmployee _employee;
 
-        public EmployeeController(IEmployee employee)
+        private readonly IWebHostEnvironment _environment;
+
+        public EmployeeController(IEmployee employee, IWebHostEnvironment environment)
         {
             _employee = employee;
+            _environment = environment;
         }
         public IActionResult Index()
         {
@@ -29,13 +33,31 @@ namespace TestProject.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(EmployeeModel employee)
+        public IActionResult Create(EmployeeViewModel employee)
         {
             if (!ModelState.IsValid)
                 return View();
 
-            EmployeeModel model = _employee.Add(employee);
-            return RedirectToAction("Details", new { id = model.Id });
+            string uploadFileName = string.Empty;
+            if (employee.PhotoPath.FileName != null)
+            {
+                string uploadFileFolder = Path.Combine(_environment.WebRootPath, "images");
+
+                uploadFileName = Path.Combine(uploadFileFolder, Guid.NewGuid().ToString() +
+                                               "_" + employee.PhotoPath.FileName);
+
+                employee.PhotoPath.CopyTo(new FileStream(uploadFileName, FileMode.Create));
+            }
+            EmployeeModel newEmployee = new EmployeeModel()
+            {
+                Name = employee.Name,
+                Email = employee.Email,
+                DepartmentName = employee.DepartmentName,
+                PhotoPath = employee.PhotoPath.FileName
+            };
+            int empId = _employee.Create(newEmployee).Id;
+
+            return RedirectToAction("Details", new { id = empId });
 
         }
         [HttpPost]

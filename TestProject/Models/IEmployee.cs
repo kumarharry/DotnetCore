@@ -4,7 +4,8 @@
     {
         public IEnumerable<EmployeeModel> GetEmployees();
         public EmployeeModel GetEmployeeById(int Id);
-        public EmployeeModel Add(EmployeeModel employee);
+        public EmployeeModel Create(EmployeeModel employee);
         public bool Delete(int id);
+        public EmployeeModel Update(EmployeeModel employeeModel);
     }
 }
